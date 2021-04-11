@@ -8,13 +8,14 @@ public class GameEngine {
     BackgroundFX bgfx;
     PaddleObject p;
     BallObject b;
-
+    BlockGroup blgr;
 
     public GameEngine(SpriteBatch buffer) {
         Buffer = buffer;
         bgfx = new BackgroundFX(Buffer);
         p = new PaddleObject(Buffer);
         b= new BallObject(Buffer,p);
+        blgr = new BlockGroup(Buffer,b);
     }
 
     public void drawScreen()
@@ -22,6 +23,7 @@ public class GameEngine {
         bgfx.draw();
         p.draw();
         b.draw();
+        blgr.draw();
     }
     public void handleInput()
     {
@@ -33,6 +35,7 @@ public class GameEngine {
         b.movement();
         b.colPaddle();
         b.gluedBall();
+        blgr.colBall();
     }
 
 
