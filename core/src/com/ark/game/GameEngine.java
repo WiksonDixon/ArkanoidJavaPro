@@ -32,6 +32,7 @@ public class GameEngine {
     {
         b.movement();
         b.colPaddle();
+        b.gluedBall();
     }
 
 

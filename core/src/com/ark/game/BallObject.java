@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class BallObject {
 
     Texture img = new Texture("gfx/BALL.png");
-    int x,y,velo_x,velo_y,res_w,res_h,wide;
+    int x,y,velo_x,velo_y,res_w,res_h,wide,gluedMode;
     SpriteBatch SB;
     PaddleObject tempPaddle;
 
@@ -57,7 +57,7 @@ public class BallObject {
             y=300;
             velo_x=0;
             velo_y=0;
-           // if(ball->bonus==0)*check=2;
+            gluedMode = 1;
         }
     }
     public void debugMovement()
@@ -81,5 +81,19 @@ public class BallObject {
             }
         }
 
+    }
+    public void gluedBall()
+    {
+        if(gluedMode==1)
+        {
+           x=tempPaddle.x+90;
+           y=tempPaddle.y+20;
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.SPACE)&&gluedMode!=0)
+        {
+            gluedMode=0;
+            velo_x=5;
+            velo_y=5;
+        }
     }
 }
