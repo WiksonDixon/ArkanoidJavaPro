@@ -2,6 +2,7 @@ package com.ark.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -27,7 +28,7 @@ public class Arkanoid extends ApplicationAdapter {
 		batch.begin();
 		ge.drawScreen();
 		ge.handleInput();
-		ge.gameEvents();
+		ge.Events();
 		batch.end();
 	}
 	

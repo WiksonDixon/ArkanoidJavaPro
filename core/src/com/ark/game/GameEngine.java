@@ -13,21 +13,36 @@ public class GameEngine {
     BlockGroup blgr;
     Player plr;
     Hud h;
+    SoundFX sfx = new SoundFX();
 
-    boolean debugMode=false;
+    boolean debugMode = false;
 
     public GameEngine(SpriteBatch buffer) {
         Buffer = buffer;
         bgfx = new BackgroundFX(Buffer);
         p = new PaddleObject(Buffer);
         plr = new Player();
-        b= new BallObject(Buffer,p,plr);
-        blgr = new BlockGroup(Buffer,b,plr);
-        h = new Hud(Buffer,plr);
-        plr.setObjects(blgr,b,p);
+        b = new BallObject(Buffer, p, plr,sfx);
+        blgr = new BlockGroup(Buffer, b, plr,sfx);
+        h = new Hud(Buffer, plr);
+        plr.setObjects(blgr, b, p,sfx);
+        // sfx.background.play((float)5);
     }
 
     public void drawScreen()
+    {
+        drawGameScreen();
+    }
+
+    public void handleInput()
+    {
+        handleGameInput();
+    }
+    public void Events()
+    {
+        gameEvents();
+    }
+    public void drawGameScreen()
     {
         int offset_y = 40;
         bgfx.draw(offset_y);
@@ -36,7 +51,7 @@ public class GameEngine {
         blgr.draw(offset_y);
         h.draw(0,0);
     }
-    public void handleInput()
+    public void handleGameInput()
     {
         p.getInput();
         if(Gdx.input.isKeyPressed(Input.Keys.Q)&&Gdx.input.isKeyPressed(Input.Keys.P))debugMode=true;
@@ -51,6 +66,4 @@ public class GameEngine {
         plr.levelManagement();
         plr.highScoreManagement();
     }
-
-
 }

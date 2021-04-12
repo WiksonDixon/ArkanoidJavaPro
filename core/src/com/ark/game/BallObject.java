@@ -12,11 +12,13 @@ public class BallObject {
     SpriteBatch SB;
     PaddleObject tempPaddle;
     Player plr;
+    SoundFX sfx;
 
-    public BallObject(SpriteBatch SB,PaddleObject tempPaddle,Player plr) {
+    public BallObject(SpriteBatch SB,PaddleObject tempPaddle,Player plr,SoundFX sfx) {
         this.SB = SB;
         this.tempPaddle=tempPaddle;
         this.plr = plr;
+        this.sfx = sfx;
         res_h=600;
         res_w=800;
         wide=20;
@@ -84,6 +86,7 @@ public class BallObject {
                 int temp_velo=(x-tempPaddle.x-100)/15;
                 velo_x=temp_velo;
                 velo_y=-velo_y;
+                if(gluedMode==0)sfx.playSound("bong");
             }
         }
 

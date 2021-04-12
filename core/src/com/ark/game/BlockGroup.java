@@ -2,9 +2,9 @@ package com.ark.game;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import org.w3c.dom.Text;
 
-import java.util.Random;
+
+//import java.util.Random;
 
 public class BlockGroup {
 
@@ -24,20 +24,21 @@ public class BlockGroup {
     BlockObject[] bl =  new BlockObject[70];
     BallObject ball;
     Player plr;
+    SoundFX sfx;
 
-    public BlockGroup(SpriteBatch SB,BallObject ball,Player plr) {
+    public BlockGroup(SpriteBatch SB,BallObject ball,Player plr,SoundFX sfx) {
         res_h=600;
         res_w=800;
         this.SB = SB;
         this.ball = ball;
         this.plr = plr;
-
+        this.sfx = sfx;
         for(int i=0;i<block_count;i++)
             bl[i]=new BlockObject();
 
         for(int i=0;i<block_count;i++)
         {
-            bl[i].x = 0 + (i % (res_w / 80)) * 80;
+            bl[i].x = (i % (res_w / 80)) * 80;
             bl[i].y = res_h - (70 + (i / (res_w / 80)) * 30);
         }
         levelGen(0);
@@ -110,23 +111,37 @@ public class BlockGroup {
         {
             plr.incScore(100);
             ball.velo_y=-ball.velo_y;
+            sfx.playSound("destroy");
         }
         if(change_x_velo==1)
         {
             plr.incScore(100);
             ball.velo_x=-ball.velo_x;
+            sfx.playSound("destroy");
         }
     }
     
     public void levelGen(int level)
     {
         int i;
-        int level_pattern=level%5;
+        int level_pattern=level%6;
 
-        if(level_pattern==-1)
+        int []custom_pattern =
+                {0,0,1,0,0,0,0,1,0,0,
+                0,0,0,1,0,0,1,0,0,0,
+                0,0,1,1,1,1,1,1,0,0,
+                0,1,1,2,1,1,2,1,1,0,
+                1,0,1,1,1,1,1,1,0,1,
+                1,0,1,0,0,0,0,1,0,1,
+                1,0,0,1,0,0,1,0,0,1};
+
+
+        if(level_pattern==5)
         {
-            for(i=0;i<block_count;i++) //debug
-                bl[i].health=10;
+            for(i=0;i<block_count;i++)
+            {
+               bl[i].health=custom_pattern[i];
+            }
         }
         if(level_pattern==0)
         {
@@ -174,7 +189,7 @@ public class BlockGroup {
                 bl[i].health=2;
             }
         }
-        if(level>4)
+        if(level>5)
         {
             for(i=0;i<block_count;i++)
             {
@@ -182,7 +197,7 @@ public class BlockGroup {
             }
         }
 
-        Random gen = new Random();
+        //Random gen = new Random();
         //bl[gen.nextInt()%block_count].health=10; /*Wylosowanie bloczka, ktory stanie sie bonusem */
 
     }

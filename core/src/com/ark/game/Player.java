@@ -6,6 +6,7 @@ public class Player {
     BlockGroup blgr;
     BallObject ball;
     PaddleObject paddle;
+    SoundFX sfx;
 
     Player()
     {
@@ -13,10 +14,11 @@ public class Player {
         newGame();
     }
 
-    public void setObjects(BlockGroup blgr,BallObject ball, PaddleObject paddle) {
+    public void setObjects(BlockGroup blgr,BallObject ball, PaddleObject paddle,SoundFX sfx) {
         this.blgr = blgr;
         this.ball = ball;
         this.paddle = paddle;
+        this.sfx = sfx;
     }
 
     public void newGame()
@@ -40,8 +42,10 @@ public class Player {
     public void decLive()
     {
         lives--;
+        sfx.playSound("livelost");
         if(lives==0)
         {
+            sfx.playSound("lost");
             blgr.levelGen(0);
             newGame();
         }
@@ -50,6 +54,7 @@ public class Player {
     {
         if(checkLevelComplete())
         {
+            sfx.playSound("win");
             level++;
             ball.resetBall();
             paddle.resetPaddle();
