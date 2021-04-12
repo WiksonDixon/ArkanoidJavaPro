@@ -13,9 +13,9 @@ public class BackgroundFX {
         this.SB = SB;
     }
 
-    public void draw()
+    public void draw(int offset_y)
     {
-    SB.draw(bg,0,scroll);
+    SB.draw(bg,0,scroll+offset_y);
     scroll--;
     if(scroll<-1800)scroll=0;
     }

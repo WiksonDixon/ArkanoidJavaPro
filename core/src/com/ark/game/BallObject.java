@@ -11,23 +11,28 @@ public class BallObject {
     int x,y,velo_x,velo_y,res_w,res_h,wide,gluedMode;
     SpriteBatch SB;
     PaddleObject tempPaddle;
+    Player plr;
 
-
-    public BallObject(SpriteBatch SB,PaddleObject tempPaddle) {
+    public BallObject(SpriteBatch SB,PaddleObject tempPaddle,Player plr) {
         this.SB = SB;
         this.tempPaddle=tempPaddle;
+        this.plr = plr;
         res_h=600;
         res_w=800;
         wide=20;
+        resetBall();
+    }
+    public void resetBall()
+    {
         x=0;
         y=0;
         velo_x=5;
         velo_y=5;
+        gluedMode=1;
     }
-
-    public void draw()
+    public void draw(int offset_y)
     {
-     SB.draw(img,x,y);
+     SB.draw(img,x,y+offset_y);
     }
     public void movement()
     {
@@ -57,6 +62,7 @@ public class BallObject {
             y=300;
             velo_x=0;
             velo_y=0;
+            plr.decLive();
             gluedMode = 1;
         }
     }

@@ -8,13 +8,20 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class PaddleObject {
 
     Texture img = new Texture("gfx/PADDLE.bmp");
-    int x=350;
+    int x=300;
     int y=20;
     int texture_w = 200;
     SpriteBatch SB;
 
     public PaddleObject(SpriteBatch SB) {
         this.SB = SB;
+        resetPaddle();
+    }
+
+    public void resetPaddle()
+    {
+        x=300;
+        y=20;
     }
 
     void getInput()
@@ -25,8 +32,8 @@ public class PaddleObject {
         if(x<0)x=0;
         if(x>800-texture_w)x=800-texture_w;
     }
-    void draw()
+    void draw(int offset_y)
     {
-        SB.draw(img,x,y);
+        SB.draw(img,x,y+offset_y);
     }
 }
