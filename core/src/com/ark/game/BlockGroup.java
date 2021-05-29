@@ -197,9 +197,6 @@ public class BlockGroup {
             }
         }
 
-        //Random gen = new Random();
-        //bl[gen.nextInt()%block_count].health=10; /*Wylosowanie bloczka, ktory stanie sie bonusem */
-
     }
 
 

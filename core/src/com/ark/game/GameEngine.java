@@ -6,6 +6,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class GameEngine {
 
+    boolean debugMode = false;
+    int mode = 0;
+
     SpriteBatch Buffer;
     BackgroundFX bgfx;
     PaddleObject p;
@@ -13,9 +16,9 @@ public class GameEngine {
     BlockGroup blgr;
     Player plr;
     Hud h;
+    Menu m;
     SoundFX sfx = new SoundFX();
 
-    boolean debugMode = false;
 
     public GameEngine(SpriteBatch buffer) {
         Buffer = buffer;
@@ -26,22 +29,26 @@ public class GameEngine {
         blgr = new BlockGroup(Buffer, b, plr,sfx);
         h = new Hud(Buffer, plr);
         plr.setObjects(blgr, b, p,sfx);
-        // sfx.background.play((float)5);
+        m = new Menu(Buffer,mode);
     }
 
     public void drawScreen()
     {
-        drawGameScreen();
+       if(mode == 0)drawMenuScreen();
+       if(mode == 1)drawGameScreen();
     }
-
     public void handleInput()
+
     {
-        handleGameInput();
+        if(mode==0)handleMenuInput();
+        if(mode==1)handleGameInput();
     }
     public void Events()
     {
-        gameEvents();
+        if(mode==0)menuEvents();
+        if(mode==1)gameEvents();
     }
+
     public void drawGameScreen()
     {
         int offset_y = 40;
@@ -56,6 +63,7 @@ public class GameEngine {
         p.getInput();
         if(Gdx.input.isKeyPressed(Input.Keys.Q)&&Gdx.input.isKeyPressed(Input.Keys.P))debugMode=true;
         if(debugMode)b.debugMovement();
+        if(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE))mode=0;
     }
     public void gameEvents()
     {
@@ -65,5 +73,44 @@ public class GameEngine {
         blgr.colBall();
         plr.levelManagement();
         plr.highScoreManagement();
+    }
+
+    public void drawMenuScreen()
+    {
+        m.draw(0);
+    }
+    public void handleMenuInput(){m.input();}
+    public void menuEvents(){
+        if(Gdx.input.isKeyJustPressed(Input.Keys.ENTER))
+        {
+            switch (m.action)
+            {
+                case 0:
+                {
+                    p.resetPaddle();
+                    plr.newGame();
+                    blgr.levelGen(0);
+                    b.resetBall();
+                    mode = 1;
+                    break;
+                }
+                case 1:
+                {
+                    mode = 1;
+                    break;
+                }
+                case 2:
+                {
+                    sfx.sound_set_on_off();
+                    m.setSound();
+                    break;
+                }
+                case 3:
+                {
+                    Gdx.app.exit();
+                    break;
+                }
+            }
+        }
     }
 }
