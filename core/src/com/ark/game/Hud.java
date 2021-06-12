@@ -22,6 +22,11 @@ public class Hud {
         f.setColor(Color.YELLOW);
     }
 
+    /**
+     * Metoda rysujaca interfejs uzytkownika w grze
+     * @param x Wspolrzedne X do rysowania
+     * @param y Wspolrzedne Y do rysowania
+     */
     public void draw(int x,int y)
     {
         SB.draw(imgHud,x,y);

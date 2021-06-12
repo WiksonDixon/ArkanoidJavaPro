@@ -43,6 +43,11 @@ public class BlockGroup {
         }
         levelGen(0);
     }
+
+    /**
+     * Metoda rysujaca kazdy bloczek w rozgrywce
+     * @param offset_y Przesuniecie wzgledem osi Y
+     */
     public void draw(int offset_y)
     {
         for(int i=0;i<block_count;i++)
@@ -65,6 +70,10 @@ public class BlockGroup {
         }
 
     }
+
+    /**
+     * Badanie kolizji pilki z kazdym bloczkiem
+     */
     public void colBall()
     {
         int ball_point_x=ball.x+10,ball_point_y=ball.y+10,    change_y_velo,change_x_velo;
@@ -120,7 +129,11 @@ public class BlockGroup {
             sfx.playSound("destroy");
         }
     }
-    
+
+    /**
+     * Generator ulozenia bloczkow do poziomow
+     * @param level Numer poziomu do poziomu
+     */
     public void levelGen(int level)
     {
         int i;

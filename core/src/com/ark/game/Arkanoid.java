@@ -14,11 +14,17 @@ public class Arkanoid extends ApplicationAdapter {
 	GameEngine ge;
 
 	@Override
+	/**
+	 * Metoda do tworzenia gry i SpriteBatch
+	 */
 	public void create () {
 		batch = new SpriteBatch();
 		ge = new GameEngine(batch);
 	}
 
+	/**
+	 * Metoda do renderowania gry i sterowania
+	 */
 	@Override
 	public void render () {
 		Gdx.gl.glClearColor(1, 0, 0, 1);

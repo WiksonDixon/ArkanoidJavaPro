@@ -18,12 +18,18 @@ public class PaddleObject {
         resetPaddle();
     }
 
+    /**
+     * Ustawienie poczatkowej pozycji paletki
+     */
     public void resetPaddle()
     {
         x=300;
         y=20;
     }
 
+    /**
+     * Sterowanie paletka przy uzyciu klawiatury
+     */
     void getInput()
     {
         if(Gdx.input.isKeyPressed(Input.Keys.LEFT)) x-=15;
@@ -32,6 +38,11 @@ public class PaddleObject {
         if(x<0)x=0;
         if(x>800-texture_w)x=800-texture_w;
     }
+
+    /**
+     * Rysowanie paletki
+     * @param offset_y Przesuniecie wzgledem Y
+     */
     void draw(int offset_y)
     {
         SB.draw(img,x,y+offset_y);

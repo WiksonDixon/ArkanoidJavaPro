@@ -26,6 +26,10 @@ public class Menu {
         this.mode = mode;
     }
 
+    /**
+     * Metoda rysujaca menu glowne gry
+     * @param offset_y Przesuniecie wzgledem osi Y
+     */
     public void draw(int offset_y)
     {
         SB.draw(bg,0,scroll+offset_y);
@@ -40,11 +44,17 @@ public class Menu {
         }
     }
 
+    /**
+     * Zmiana opcji glosnosci
+     */
     public void setSound()
     {
         sound = !sound;
     }
 
+    /**
+     * Metoda do poruszania sie po menu
+     */
     public void input()
     {
         if(Gdx.input.isKeyJustPressed(Input.Keys.UP))action--;

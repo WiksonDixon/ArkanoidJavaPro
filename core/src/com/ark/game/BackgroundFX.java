@@ -13,6 +13,10 @@ public class BackgroundFX {
         this.SB = SB;
     }
 
+    /**
+     * Rysowanie animowanego tla w grze
+     * @param offset_y Przesuniecie wzgledem osi Y
+     */
     public void draw(int offset_y)
     {
     SB.draw(bg,0,scroll+offset_y);

@@ -21,6 +21,9 @@ public class SoundFX {
         background.play((float)5);
     }
 
+    /**
+     * Metoda do odpowiedniej obslugi wlaczonego dzwieku w opcjach
+     */
     public void sound_set_on_off()
     {
         sound_set=!sound_set;
@@ -28,6 +31,10 @@ public class SoundFX {
         else background.play((float)5);
     }
 
+    /**
+     * Metoda do odtwarzania efektow dzwiekowych
+     * @param s tekst okreslajacy jaki dzwiek ma zostac odtworzony
+     */
     public void playSound(String s)
     {
         if(!sound_set)return;

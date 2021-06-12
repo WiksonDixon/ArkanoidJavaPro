@@ -32,23 +32,37 @@ public class GameEngine {
         m = new Menu(Buffer,mode);
     }
 
+    /**
+     * Metoda wyswietlajaca odpowiednio ekran gry lub menu
+     */
     public void drawScreen()
     {
        if(mode == 0)drawMenuScreen();
        if(mode == 1)drawGameScreen();
     }
+
+    /**
+     * Metoda do obslugi klawiatury w grze lub menu
+     */
     public void handleInput()
 
     {
         if(mode==0)handleMenuInput();
         if(mode==1)handleGameInput();
     }
+
+    /**
+     * Metoda determinujaca czy maja dziac sie wydarzenia z okna menu czy gry
+     */
     public void Events()
     {
         if(mode==0)menuEvents();
         if(mode==1)gameEvents();
     }
 
+    /**
+     * Metoda do rysowania gry
+     */
     public void drawGameScreen()
     {
         int offset_y = 40;
@@ -58,6 +72,10 @@ public class GameEngine {
         blgr.draw(offset_y);
         h.draw(0,0);
     }
+
+    /**
+     * Metoda do sterowania w grze
+     */
     public void handleGameInput()
     {
         p.getInput();
@@ -65,6 +83,10 @@ public class GameEngine {
         if(debugMode)b.debugMovement();
         if(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE))mode=0;
     }
+
+    /**
+     * Metoda do zdarzen w grze
+     */
     public void gameEvents()
     {
         b.movement();
@@ -80,6 +102,11 @@ public class GameEngine {
         m.draw(0);
     }
     public void handleMenuInput(){m.input();}
+
+    /**
+     * Metoda do wybierania opcji w menu glownym
+     */
+
     public void menuEvents(){
         if(Gdx.input.isKeyJustPressed(Input.Keys.ENTER))
         {

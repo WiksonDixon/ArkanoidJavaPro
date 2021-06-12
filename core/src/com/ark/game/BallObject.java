@@ -24,6 +24,10 @@ public class BallObject {
         wide=20;
         resetBall();
     }
+
+    /**
+     * Ustawienie pilki w poczatkowej pozycji
+     */
     public void resetBall()
     {
         x=0;
@@ -32,10 +36,19 @@ public class BallObject {
         velo_y=5;
         gluedMode=1;
     }
+
+    /**
+     * Rysowanie pilki
+     * @param offset_y Przesuniecie wzgledem osi y
+     */
     public void draw(int offset_y)
     {
      SB.draw(img,x,y+offset_y);
     }
+
+    /**
+     * Poruszanie piłki przez dodawanie prędkości do współrzędnych
+     */
     public void movement()
     {
         x+=velo_x;
@@ -68,6 +81,10 @@ public class BallObject {
             gluedMode = 1;
         }
     }
+
+    /**
+     * Funkcja do szybszego testowania gry przez poruszanie pilka
+     */
     public void debugMovement()
     {
         if(Gdx.input.isKeyPressed(Input.Keys.W))velo_y=5;
@@ -77,6 +94,9 @@ public class BallObject {
 
     }
 
+    /**
+     * Kolizja pilki z paletka
+     */
     public void colPaddle()
     {
         if(tempPaddle.y+20==y)
@@ -91,6 +111,10 @@ public class BallObject {
         }
 
     }
+
+    /**
+     * Metoda do poruszania pilki przyklejonej do paletki
+     */
     public void gluedBall()
     {
         if(gluedMode==1)

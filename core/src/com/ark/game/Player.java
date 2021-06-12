@@ -14,6 +14,13 @@ public class Player {
         newGame();
     }
 
+    /**
+     * Ustawienie referencji do klas
+     * @param blgr Klasa tla
+     * @param ball Klasa pilki
+     * @param paddle Klasa paletki
+     * @param sfx Klasa efektow dzwiekowych
+     */
     public void setObjects(BlockGroup blgr,BallObject ball, PaddleObject paddle,SoundFX sfx) {
         this.blgr = blgr;
         this.ball = ball;
@@ -21,12 +28,20 @@ public class Player {
         this.sfx = sfx;
     }
 
+    /**
+     * Ustawienie wartosci poczatkowych do gry
+     */
     public void newGame()
     {
         level = 0;
         lives = 3;
         score = 0;
     }
+
+    /**
+     * Sprawdza czy poziom jest ukonczony
+     * @return true gdy poziom jest ukonczony, false jesli rozgrywka wciaz trwa
+     */
     public boolean checkLevelComplete()
     {
         boolean temp = true;
@@ -35,10 +50,19 @@ public class Player {
                 temp=false;
         return temp;
     }
+
+    /**
+     * Zwiekszanie wyniku
+     * @param n Wartosc o jaka ma sie zwiekszyc wynik
+     */
     public void incScore(int n)
     {
         score+=n;
     }
+
+    /**
+     * Zmniejszanie ilosci zyc i obsluga zakonczenia gry
+     */
     public void decLive()
     {
         lives--;
@@ -50,6 +74,10 @@ public class Player {
             newGame();
         }
     }
+
+    /**
+     * Metoda do obslugi przechodzenia miedzy poziomami przy ukonczeniu ich
+     */
     public void levelManagement()
     {
         if(checkLevelComplete())
@@ -61,6 +89,10 @@ public class Player {
             blgr.levelGen(level);
         }
     }
+
+    /**
+     * Metoda do ustawiania nowego najwyzszego wyniku
+     */
     public void highScoreManagement()
     {
         if(score>highscore)highscore=score;
